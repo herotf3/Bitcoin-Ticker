@@ -93,7 +93,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func updatePriceData(json : JSON) {
         print(json)
         if let priceRes = json["bid"].double {
-            self.bitcoinPriceLabel.text=String(priceRes.rounded())
+            self.bitcoinPriceLabel.text=String(priceRes)
             //status overview
             let changePercent = json["changes"]["percent"]
             let dayRating=changePercent["day"].double
@@ -101,8 +101,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             changeIconStatus(ofImage: iconStatusDay, isIncrease: dayRating!>0.0)
             changeIconStatus(ofImage: iconStatusMonth, isIncrease: monthRating!>0.0)
-            percentInday.text="\(dayRating?.rounded() ?? 0)%"
-            percentInMonth.text="\(monthRating?.rounded() ?? 0)%"
+            percentInday.text="\(dayRating ?? 0)%"
+            percentInMonth.text="\(monthRating ?? 0)%"
         }
     }
     
